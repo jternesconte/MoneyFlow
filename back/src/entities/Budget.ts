@@ -1,0 +1,32 @@
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { User } from "./User";
+import { Category } from "./Category";
+
+@Entity("budgets")
+export class Budget {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({ name: "user_id", referencedColumnName: 'id' })
+  userId: User;
+
+  @ManyToOne(() => Category, { nullable: false })
+  @JoinColumn({ name: "category_id", referencedColumnName: 'id' })
+  categoryId: Category;
+
+  @Column({ type: "decimal", precision: 12, scale: 2, default: 0, nullable: false })
+  amount: number;
+
+  @Column({ type: "text", nullable: true })
+  description: string;
+
+  @Column({ type: "date", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  month: Date;
+
+  @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  createdAt: Date;
+
+  @Column({ name: "updated_at", type: "timestamp", nullable: true })
+  updatedAt: Date;
+}
