@@ -1,6 +1,7 @@
 import express from 'express';
 import { AppDataSource } from './data-source';
 import cors from 'cors';
+import { userRoutes } from './routes/User.routes';
 
 AppDataSource.initialize().then(() => {
    const app = express();
@@ -23,8 +24,7 @@ AppDataSource.initialize().then(() => {
        next();
    });
 
-   //modelo para fazer as rotas dps
-   /* app.use('/api/car', carRoutes); */
+   app.use('/api/user', userRoutes);
 
 
    return app.listen(process.env.PORT);
