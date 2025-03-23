@@ -2,7 +2,7 @@ import { ICategory } from "./ICategory";
 import { IUser } from "./IUser";
 
 export interface IBudget {
-   id: number;
+   id?: number;
    userId: IUser;
    categoryId: ICategory;
    amount: number;
