@@ -2,6 +2,7 @@ import express from 'express';
 import { AppDataSource } from './data-source';
 import cors from 'cors';
 import { userRoutes } from './routes/User.routes';
+import { categoryRoutes } from './routes/Category.routes';
 
 AppDataSource.initialize().then(() => {
    const app = express();
@@ -25,7 +26,8 @@ AppDataSource.initialize().then(() => {
    });
 
    app.use('/api/user', userRoutes);
-
+   app.use('/api/category', categoryRoutes);
+   
 
    return app.listen(process.env.PORT);
 });
