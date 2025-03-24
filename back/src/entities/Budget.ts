@@ -21,12 +21,12 @@ export class Budget {
   @Column({ type: "text", nullable: true })
   description: string;
 
-  @Column({ type: "date", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  @Column({ type: "date", nullable: false })
   month: Date;
 
-  @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  @Column({ name: "created_at", type: "timestamp", nullable: false })
   createdAt: Date;
 
-  @Column({ name: "updated_at", type: "timestamp", nullable: true })
+  @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", type: "timestamp", nullable: false })
   updatedAt: Date;
 }

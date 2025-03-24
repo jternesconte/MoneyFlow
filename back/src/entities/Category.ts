@@ -11,9 +11,9 @@ export class Category {
   @Column({ type: "text", nullable: false })
   description: string;
 
-  @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  @Column({ name: "created_at", type: "timestamp", nullable: false })
   createdAt: Date;
 
-  @Column({ name: "updated_at", type: "timestamp", nullable: true })
+  @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", type: "timestamp", nullable: false })
   updatedAt: Date;
 }

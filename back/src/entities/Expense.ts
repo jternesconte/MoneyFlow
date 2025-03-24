@@ -21,12 +21,12 @@ export class Expense {
   @Column({ type: "text", nullable: true })
   description: string;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  @Column({ type: "timestamp", nullable: false })
   date: Date;
 
-  @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP",nullable: false })
+  @Column({ name: "created_at", type: "timestamp", nullable: false })
   createdAt: Date;
 
-  @Column({ name: "updated_at", type: "timestamp", nullable: true })
+  @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", type: "timestamp", nullable: false })
   updatedAt: Date;
 }
