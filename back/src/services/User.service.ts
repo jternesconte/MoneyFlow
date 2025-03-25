@@ -26,7 +26,7 @@ export class UserService {
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser: IUser = { name, email, password: hashedPassword };
   
-      await userRepository.save(newUser);
+      await userRepository.saveUser(newUser);
   
       const createdUser = await userRepository.findOneBy({ email: newUser.email });
       if (!createdUser) {
