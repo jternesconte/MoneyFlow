@@ -5,7 +5,7 @@ export class UserController {
 
    private userService = new UserService();
 
-   async newRegister(req: Request, res: Response): Promise<void> {
+   async newRegister(req: Request, res: Response) {
       const { name, email, password, password2 } = req.body;
   
       const result = await this.userService.registerUser(name, email, password, password2);
