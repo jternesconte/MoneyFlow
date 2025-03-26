@@ -6,14 +6,14 @@ export class CategoryController {
 
    private categoryService = new CategoryService();
 
-   async  newCategory(req: Request, res: Response) {
+   newCategory = async (req: Request, res: Response) => {
       const { name, description } = req.body;
   
-      const newCategory: ICategory | null = await this.categoryService.newCategory(name, description);
-      if(newCategory) {
-         res.status(200).json(newCategory);
+      const newCategory: ICategory | { msg: string; code: number} = await this.categoryService.newCategory(name, description);
+      if("code" in newCategory) {
+         res.status(newCategory.code).json({ msg: newCategory.msg })
       } else {
-         res.status(400).json({ msg: 'Error in Category creation.' })
+         res.status(200).json(newCategory);
       }
    }
 
