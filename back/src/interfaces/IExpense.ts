@@ -3,8 +3,8 @@ import { IUser } from "./IUser";
 
 export interface IExpense {
    id?: number;
-   userId: IUser;
-   categoryId: ICategory;
+   user: IUser;
+   category: ICategory;
    amount: number;
    description: string;
    date: Date;
