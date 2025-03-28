@@ -24,4 +24,26 @@ export class ExpenseController {
       }
    }
 
+   getExpensesByInterval = async (req: Request, res: Response) => {
+      const { days } = req.params;
+
+      const intervalExpenses: IExpense[]  | { msg: string; code: number }  = await this.expenseService.getExpensesByInterval(Number(days));
+      if("code" in intervalExpenses) {
+         res.status(intervalExpenses.code).json({ msg: intervalExpenses.msg })
+      } else {
+         res.status(200).json(intervalExpenses);
+      }
+   }
+
+   getExpensesByCategory = async (req: Request, res: Response) => {
+      const { categoryId } = req.body;
+
+      const categoryExpenses: IExpense[]  | { msg: string; code: number }  = await this.expenseService.getExpensesByCategory(Number(categoryId));
+      if("code" in categoryExpenses) {
+         res.status(categoryExpenses.code).json({ msg: categoryExpenses.msg })
+      } else {
+         res.status(200).json(categoryExpenses);
+      }
+   }
+
 }
