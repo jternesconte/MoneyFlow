@@ -9,11 +9,11 @@ export class Expense {
 
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: "user_id", referencedColumnName: 'id' })
-  userId: User;
+  user: User;
 
   @ManyToOne(() => Category, { nullable: false })
   @JoinColumn({ name: "category_id", referencedColumnName: 'id' })
-  categoryId: Category;
+  category: Category;
 
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0, nullable: false })
   amount: number;
