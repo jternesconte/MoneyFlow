@@ -26,7 +26,7 @@ export class ExpenseService {
 
       newExpense = {
          user: loggedUser,
-         category,
+         category: category,
          amount,
          description,
          date: new Date(date),
@@ -36,5 +36,35 @@ export class ExpenseService {
       expenseRepository.saveExpense(newExpense);
 
       return newExpense;
+   }
+
+   async getExpensesByInterval(days: number): Promise<IExpense[] | { msg: string; code: number }> {
+      let intervalExpenses: IExpense[] = [];
+
+      if(!days) {
+         return { msg: "Not received interval days", code: 400 };
+      }
+
+      intervalExpenses = await expenseRepository.findAllByInterval(days);
+      if(intervalExpenses) {
+         return intervalExpenses;
+      } else {
+         return { msg: "No expenses found", code: 404 };
+      }
+   }
+
+   async getExpensesByCategory(categoryId: number): Promise<IExpense[] | { msg: string; code: number }> {
+      let intervalExpenses: IExpense[] = [];
+
+      if(!categoryId) {
+         return { msg: "Not received category id", code: 400 };
+      }
+
+      intervalExpenses = await expenseRepository.findAllByCategory(categoryId);
+      if(intervalExpenses) {
+         return intervalExpenses;
+      } else {
+         return { msg: "No expenses found", code: 404 };
+      }
    }
 }
