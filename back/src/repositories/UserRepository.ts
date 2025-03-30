@@ -11,5 +11,11 @@ export const userRepository = AppDataSource.getRepository(User).extend({
       });
    
       return this.save(user);
+    },
+
+    async findUserById(userId: number): Promise<IUser> {
+      const user = await this.findOneBy({ id: userId });
+   
+      return user as IUser;
     }
 })
