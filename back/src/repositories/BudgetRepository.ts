@@ -2,8 +2,8 @@ import { AppDataSource } from "../data-source";
 import { Budget } from "../entities/Budget";
 import { Category } from "../entities/Category";
 import { Expense } from "../entities/Expense";
-import { IBudget } from "../interfaces/Budget";
-import { IExpense } from "../interfaces/Expense";
+import { IBudget } from "../interfaces/IBudget";
+import { IExpense } from "../interfaces/IExpense";
 import { ICategory } from "../interfaces/ICategory";
 
 export const budgetRepository = AppDataSource.getRepository(Budget).extend({
