@@ -4,11 +4,11 @@ import { categoryRepository } from "../repositories/CategoryRepository";
 
 export class CategoryService {
 
-   async newCategory(name: string, description: string): Promise<ICategory | null> {
+   async newCategory(name: string, description: string): Promise<ICategory | { msg: string; code: number}> {
       let newCategory: ICategory;
 
       if(!name || !description) {
-         return null;
+         return { msg: "Not received some category information", code: 400 };
       }
 
       newCategory = {
