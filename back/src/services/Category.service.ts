@@ -17,8 +17,6 @@ export class CategoryService {
          createdAt: new Date()
       }
 
-      categoryRepository.saveCategory(newCategory);
-
       return newCategory;
    }
 }
