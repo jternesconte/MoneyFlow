@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { IExpense } from '../interfaces/IExpense';
 import { ExpenseService } from '../services/Expense.service';
+import { categoryRepository } from '../repositories/CategoryRepository';
+import { expenseRepository } from '../repositories/ExpenseRepository';
 
 export class ExpenseController {
 
@@ -21,6 +23,7 @@ export class ExpenseController {
          res.status(newExpense.code).json({ msg: newExpense.msg })
       } else {
          res.status(200).json(newExpense);
+         expenseRepository.saveExpense(newExpense);
       }
    }
 

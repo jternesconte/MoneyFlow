@@ -33,8 +33,6 @@ export class ExpenseService {
          createdAt: new Date()
       }
 
-      expenseRepository.saveExpense(newExpense);
-
       return newExpense;
    }
 
