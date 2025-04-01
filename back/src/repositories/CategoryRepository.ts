@@ -14,6 +14,12 @@ export const categoryRepository = AppDataSource.getRepository(Category).extend({
     return this.save(category);
   },
 
+  async getAllCategories(): Promise<ICategory[]> {
+    const categories = await this.find();
+
+    return categories as ICategory[];
+  },
+
   async findCategoryById(categoryId: number): Promise<ICategory> {
     const category = await this.findOneBy({ id: categoryId });
 
