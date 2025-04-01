@@ -19,4 +19,13 @@ export class CategoryController {
       }
    }
 
+   getCategories = async (req: Request, res: Response) => { 
+      const categories: ICategory[] | { msg: string; code: number} = await this.categoryService.getAllCategories();
+      if("code" in categories) {
+         res.status(categories.code).json({ msg: categories.msg })
+      } else {
+         res.status(200).json(categories);
+      }
+   }
+
 }
