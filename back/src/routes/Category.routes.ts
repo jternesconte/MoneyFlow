@@ -7,3 +7,5 @@ export const categoryRoutes = Router();
 categoryRoutes.use(authenticateToken);
 
 categoryRoutes.post('/newCategory', new CategoryController().newCategory);
+
+categoryRoutes.get('/getAllCategories', new CategoryController().getCategories);
