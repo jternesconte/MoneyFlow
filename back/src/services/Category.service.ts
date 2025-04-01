@@ -19,4 +19,11 @@ export class CategoryService {
 
       return newCategory;
    }
+
+   async getAllCategories(): Promise<ICategory[] | { msg: string; code: number}> {
+      let categories: ICategory[] = await categoryRepository.getAllCategories();
+
+
+      return categories;
+   }
 }
