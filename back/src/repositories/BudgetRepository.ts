@@ -10,8 +10,8 @@ export const budgetRepository = AppDataSource.getRepository(Budget).extend({
 
  async saveBudget(data: IBudget): Promise<Budget> {
    const Budget = this.create({
-      userId: data.userId,
-      categoryId: data.categoryId,
+      user: data.user,
+      category: data.category,
       amount: data.amount,
       description: data.description,
       month: data.month,
