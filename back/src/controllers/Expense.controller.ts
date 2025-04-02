@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { IExpense } from '../interfaces/IExpense';
-import { ExpenseService } from '../services/Expense.service';
+import { ExpensesDivision, ExpenseService } from '../services/Expense.service';
 import { categoryRepository } from '../repositories/CategoryRepository';
 import { expenseRepository } from '../repositories/ExpenseRepository';
+
 
 export class ExpenseController {
 
@@ -45,7 +46,18 @@ export class ExpenseController {
       if("code" in categoryExpenses) {
          res.status(categoryExpenses.code).json({ msg: categoryExpenses.msg })
       } else {
-         res.status(200).json(categoryExpenses);
+         res.status(200).json();
+      }
+   }
+
+   getExpensesInfoLastWeek = async (req: Request, res: Response) => {
+      const lastWeekExpenses: IExpense[]  | { msg: string; code: number }  = await this.expenseService.getExpensesByInterval(10);
+      if("code" in lastWeekExpenses) {
+         res.status(lastWeekExpenses.code).json({ msg: lastWeekExpenses.msg })
+      } else {
+         let expensesByCategory: ExpensesDivision = await this.expenseService.getExpensesInfoLastWeek(lastWeekExpenses);
+
+         res.status(200).json({ totalSpent: expensesByCategory.totalSpent, categories: expensesByCategory.category });
       }
    }
 

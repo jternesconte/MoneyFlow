@@ -5,6 +5,15 @@ import { categoryRepository } from '../repositories/CategoryRepository';
 import { ICategory } from '../interfaces/ICategory';
 import { expenseRepository } from '../repositories/ExpenseRepository';
 
+export interface ExpensesDivision {
+   category: {
+      categoryName: string;
+      categorySpent: number;
+      spentPercentage: number;
+   }[],
+   totalSpent: number
+}
+
 export class ExpenseService {
 
    async newExpense(categoryId: number, amount: number, description: string, date: string, userId: number): Promise<IExpense | { msg: string; code: number }> {
@@ -64,5 +73,34 @@ export class ExpenseService {
       } else {
          return { msg: "No expenses found", code: 404 };
       }
+   }
+
+   async getExpensesInfoLastWeek(expenses: IExpense[]): Promise<ExpensesDivision> {
+      let expensesByCategory: ExpensesDivision = {
+         category: [],
+         totalSpent: 0
+      };
+
+      expenses.forEach(expense => {
+         let categoryIndex = expensesByCategory.category.findIndex(e => e.categoryName === expense.category.name);
+         if(categoryIndex != -1) {
+            expensesByCategory.category[categoryIndex].categorySpent = expensesByCategory.category[categoryIndex].categorySpent + Number(expense.amount); 
+         } else {
+            expensesByCategory.category.push({ categoryName: expense.category.name, categorySpent: Number(expense.amount), spentPercentage: 0 });
+         }
+      });
+
+
+      expensesByCategory.category.forEach(e => {
+         expensesByCategory.totalSpent = expensesByCategory.totalSpent + e.categorySpent;
+      });
+
+      expensesByCategory.totalSpent = Number(expensesByCategory.totalSpent.toFixed(2))
+
+      expensesByCategory.category.forEach(e => {
+         e.spentPercentage = Number(((e.categorySpent / expensesByCategory.totalSpent) * 100).toFixed(2));
+      });
+
+      return expensesByCategory;
    }
 }
