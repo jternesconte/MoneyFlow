@@ -27,7 +27,7 @@ export const expenseRepository = AppDataSource.getRepository(Expense).extend({
       where: {
         date: Between(startDate, finalDate)
       },
-      relations: ["category", "user"],
+      relations: ["category"],
     });
 
     return expenses as IExpense[];
@@ -38,7 +38,7 @@ export const expenseRepository = AppDataSource.getRepository(Expense).extend({
         where: {
           category: { id: categoryId }
         },
-        relations: ["category", "user"],
+        relations: ["category"],
      });
  
      return expenses as IExpense[];
