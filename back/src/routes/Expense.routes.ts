@@ -11,3 +11,5 @@ expenseRoutes.post('/newExpense', new ExpenseController().newExpense);
 expenseRoutes.get('/getExpenses/interval/:days', new ExpenseController().getExpensesByInterval);
 
 expenseRoutes.post('/getExpenses/category', new ExpenseController().getExpensesByCategory);
+
+expenseRoutes.get('/getExpenses/lastWeek', new ExpenseController().getExpensesInfoLastWeek);
