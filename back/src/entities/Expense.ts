@@ -29,4 +29,10 @@ export class Expense {
 
   @Column({ name: "updated_at", default: () => "CURRENT_TIMESTAMP", type: "timestamp", nullable: false })
   updatedAt: Date;
+
+  @Column({ type: "boolean", default: false })
+  isFixed: boolean;
+
+  @Column({ type: "varchar", nullable: true })
+  recurrenceInterval: string;
 }
