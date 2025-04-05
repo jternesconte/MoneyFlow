@@ -17,6 +17,7 @@ export class CategoryService {
          createdAt: new Date()
       }
 
+      await categoryRepository.saveCategory(newCategory);
       return newCategory;
    }
 
