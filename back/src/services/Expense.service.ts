@@ -42,6 +42,8 @@ export class ExpenseService {
          createdAt: new Date()
       }
 
+      await expenseRepository.saveExpense(newExpense);
+
       return newExpense;
    }
 

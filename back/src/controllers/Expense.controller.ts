@@ -23,7 +23,6 @@ export class ExpenseController {
       if("code" in newExpense) {
          res.status(newExpense.code).json({ msg: newExpense.msg })
       } else {
-         await expenseRepository.saveExpense(newExpense);
          res.status(200).json(newExpense);
       }
    }
