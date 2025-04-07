@@ -6,7 +6,6 @@ export interface IBudget {
    user: IUser;
    category: ICategory;
    amount: number;
-   description: string;
    month: Date;
    createdAt: Date;
    updatedAt?: Date;

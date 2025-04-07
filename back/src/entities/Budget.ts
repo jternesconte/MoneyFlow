@@ -18,9 +18,6 @@ export class Budget {
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0, nullable: false })
   amount: number;
 
-  @Column({ type: "text", nullable: true })
-  description: string;
-
   @Column({ type: "date", nullable: false })
   month: Date;
 
