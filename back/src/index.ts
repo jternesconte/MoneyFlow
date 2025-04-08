@@ -4,6 +4,7 @@ import cors from 'cors';
 import { userRoutes } from './routes/User.routes';
 import { categoryRoutes } from './routes/Category.routes';
 import { expenseRoutes } from './routes/Expense.routes';
+import { budgetRoutes } from './routes/Budget.routes';
 
 AppDataSource.initialize().then(() => {
    const app = express();
@@ -29,6 +30,7 @@ AppDataSource.initialize().then(() => {
    app.use('/api/user', userRoutes);
    app.use('/api/category', categoryRoutes);
    app.use('/api/expense', expenseRoutes);
+   app.use('/api/budget', budgetRoutes);
    
 
    return app.listen(process.env.PORT);
