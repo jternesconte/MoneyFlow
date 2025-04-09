@@ -13,7 +13,6 @@ export const budgetRepository = AppDataSource.getRepository(Budget).extend({
       user: data.user,
       category: data.category,
       amount: data.amount,
-      description: data.description,
       month: data.month,
       createdAt: new Date().toISOString()
    });
