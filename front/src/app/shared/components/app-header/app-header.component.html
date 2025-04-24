@@ -1,5 +1,10 @@
-<p-menubar [model]="items">
-  <ng-template pTemplate="start">
-    <img src="assets/images/car-icon.png" alt="logo" style="height: 30px">
+<p-toolbar class="rounded-4xl">
+  <ng-template #start>
+      <div class="flex items-center gap-2">
+        <img src="assets/images/main-icon.png" alt="logo" class="image-header">
+      </div>
   </ng-template>
-</p-menubar>
+
+  <ng-template #end>
+  </ng-template>
+</p-toolbar>
