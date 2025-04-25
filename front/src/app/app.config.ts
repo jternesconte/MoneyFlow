@@ -15,13 +15,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
         theme: {
-            preset: MyPreset,
-            options: {
-              darkModeSelector: false || 'none'
-            },
+            preset: MyPreset
         },
     }),
-    provideRouter(routes),
     provideHttpClient(withInterceptors([JwtInterceptor])),
   ]
 };
