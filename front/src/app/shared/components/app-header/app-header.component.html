@@ -1,10 +1,32 @@
-<p-toolbar class="rounded-4xl">
-  <ng-template #start>
-      <div class="flex items-center gap-2">
-        <img src="assets/images/main-icon.png" alt="logo" class="image-header">
-      </div>
-  </ng-template>
+<p-toolbar class="text-white">
+  <div class="flex items-center gap-3">
+    <button pButton type="button" icon="pi pi-home" class="p-button-rounded p-button-text text-white" aria-label="Home"></button>
+  </div>
 
-  <ng-template #end>
-  </ng-template>
+  <div class="flex items-center gap-3 ml-auto">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-eye"
+      class="p-button-rounded p-button-text text-white"
+      aria-label="Show/Hide values">
+    </button>
+
+    <button
+      pButton
+      type="button"
+      icon="pi pi-sun"
+      class="p-button-rounded p-button-text text-white"
+      (click)="'toggleTema()'"
+      aria-label="Toggle theme">
+    </button>
+
+    <p-menu #userMenu [popup]="true" [model]="userItems"></p-menu>
+    <button
+      type="button"
+      class="p-button-rounded p-button-text"
+      (click)="userMenu.toggle($event)">
+      <img src="assets/images/jp.jpg" alt="User" class="rounded-full w-8 h-8" />
+    </button>
+  </div>
 </p-toolbar>
