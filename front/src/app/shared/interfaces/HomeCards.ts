@@ -1,4 +1,4 @@
 export interface HomeCards {
-   header: string;
-   value: string;
+  header: string;
+  value: string;
 }
