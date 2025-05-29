@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,18 @@ export class ExpensesService {
 
 constructor(private http: HttpClient) { }
   addExpense(expense: any) {
-    return this.http.post('http://localhost:3000/newExpense', expense);
+    return this.http.post('http://localhost:3000/api/expense/newExpense', expense);
   }
 
-  getExpensesByCategory(expense: any) {
-    return this.http.post('http://localhost:3000/getExpenses/category', expense);
+  getExpensesByCategory(categoryId: number): Observable<any> {
+    return this.http.post('http://localhost:3000/api/expense/getExpenses/category', categoryId);
   }
 
-  getExpenseLastWeek(expense: any) {
-    return this.http.post('http://localhost:3000/getExpenses/lastWeek', expense);
+  getExpenseLastWeek(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/expense/getExpenses/lastWeek');
   }
 
-  getExpenses() {
-    return this.http.get('http://localhost:3000/getExpenses/interval/:days');
+  getExpenses(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/expense/getExpenses/interval/:days');
   }
 }
